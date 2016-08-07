@@ -47,13 +47,13 @@ body {
   .column.two-thirds {
     width: 66.7%;
   }
-  .colum.half {
+  .column.half {
     width: 50%;
   }
-  .colum.third {
+  .column.third {
     width: 33.3%;
   }
-  .colum.fourth {
+  .column.fourth {
     width: 25%;
   }
   .column.flow-opposite {
