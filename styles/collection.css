@@ -11,10 +11,10 @@ body.collection {
 }
 
 .collection-album-container {
-  position: relative;
-  margin-top: 30px;
-  margin: 20px;
-  text-align: center;
+    position: relative;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    text-align: center;
 }
 
 .collection-album-container .caption {
@@ -30,6 +30,10 @@ body.collection {
 .collection-album-container .caption p a {
   color: rgba(255,255,255,0.6);
   text-decoration: none;
+}
+
+.collection-album-container .caption p a.album-name {
+  color: white;
 }
 
 .collection-album-container img {
