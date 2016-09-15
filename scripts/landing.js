@@ -1,17 +1,15 @@
 var pointsArray = document.getElementsByClassName('point'); //get points in selling points
+var revealPoint = function(point) { // function that applies styles to every point
+  point.style.opacity = 1;
+  point.style.transform = "scaleX(1) translateY(0)";
+  point.style.msTransform = "scaleX(1) translateY(0)";
+  point.style.WebkitTransform = "scaleX(1) translateY(0)"
+};
 
 var animatePoints = function(points) { //injecting parameter where would animate every point
 
-    var revealPoint = function(index) { // function that applies styles to every point
-      points[index].style.opacity = 1;
-      points[index].style.transform = "scaleX(1) translateY(0)";
-      points[index].style.msTransform = "scaleX(1) translateY(0)";
-      points[index].style.WebkitTransform = "scaleX(1) translateY(0)"
-    };
-
-    for (var i = 0; i < pointsArray.length; i++) { //loop to pointsArray and apply the css style
-      revealPoint(i);
-    }
+    forEach(points, revealPoint)
+  
 }
 
 // animatePoints();
