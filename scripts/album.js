@@ -28,12 +28,42 @@ var albumPicasso = {
   ]
 };
 
+var albumAmyWinehouse = {
+  title: 'Back to Black',
+  artist: 'Amy Winehouse',
+  label: 'Sony',
+  year: '2006',
+  albumUrl: 'assets/images/album_covers/02.png',
+  songs: [
+    {
+      title: 'Rehab',
+      duration: '3:34'
+    },
+    {
+      title: 'You Know Im no Good',
+      duration: '4:17'
+    },
+    {
+      title: 'Me & Mr Jones',
+      duration: '2:32'
+    },
+    {
+      title: 'Just Friends',
+      duration: '3:12'
+    },
+    {
+      title: 'Back To Black',
+      duration: '4:00'
+    }
+  ]
+};
+
 var albumMarconi = {
   title: 'The Telephone',
   artist: 'Guglielmo Marconi',
   label: 'EM',
   year: '1909',
-  albumArtUrl: 'assets/images/album_covers/20.png',
+  albumUrl: 'assets/images/album_covers/20.png',
   songs: [
     {
       title: 'Hello Operator',
@@ -71,17 +101,20 @@ var createSongRow = function(songNumber, songName, songLength) {
       return template;
 };
 
+/*
+select the HTML elements grabbing them from class name
+to display on album page populate elements to the html
+*/
+var albumTitle = document.getElementsByClassName('album-view-title')[0];
+var albumArtist = document.getElementsByClassName('album-view-artist')[0];
+var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
+var albumImage = document.getElementsByClassName('album-cover-art')[0];
+var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
+
+
+
 // the parameter album is on the window.onload function where setCurrentAlbum(albumPicasso)
 var setCurrentAlbum = function(album) {
-  /*
-  select the HTML elements grabbing them from class name
-  to display on album page populate elements to the html
-  */
-  var albumTitle = document.getElementsByClassName('album-view-title')[0];
-  var albumArtist = document.getElementsByClassName('album-view-artist')[0];
-  var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
-  var albumImage = document.getElementsByClassName('album-cover-art')[0];
-  var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
 
   /*
   the first child property indentifies the first child node of an element and nodevalue returns or sets the
@@ -104,4 +137,20 @@ var setCurrentAlbum = function(album) {
 
 window.onload = function() {
   setCurrentAlbum(albumPicasso)
+
+  var albums = [albumPicasso, albumAmyWinehouse, albumMarconi]; //PUTTING ALL ALBUMS ON AN ARRAY SO WE CAN TOGGLE THROUGH THEM
+  var index = 1; /*
+  IF IS SET TO 0 IT WOULD NOT KEEP GOING TO THE FOLLOWING ALBUM .
+  OUTSIDE OF THE FUNCTION BECAUSE WHEN INCREASES BY 1 THAT STATE WILL REMEMBER AND \
+  CARRIES OVER THE NEXT CLICK EVENT */
+  albumImage.addEventListener('click', function(event) { // Grabbing the albumImage from line 111. This is the event handler also known as callback
+      setCurrentAlbum(albums[index]);
+      index++;
+      if(index == albums.length) {
+        index = 0; //return to the first album again to reset the index to 0 THE INITIAL VALUE IS OUTSIDE OF THE FUNCTION
+      }
+    });
+
+
+
 }
