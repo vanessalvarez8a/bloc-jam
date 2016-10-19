@@ -106,8 +106,11 @@ var setCurrentAlbum = function(album) {
 
   var findParentByClassName = function(element, targetClass) {
     if (element) {
+      if (element.className === targetClass) {
+        return element;
+      }
         var currentParent = element.parentElement;
-        while (currentParent.className != targetClass && currentParent.className !== null) {
+        while (currentParent && currentParent.className != targetClass) {
             currentParent = currentParent.parentElement;
         }
         return currentParent;
@@ -116,21 +119,7 @@ var setCurrentAlbum = function(album) {
 
 
   var getSongItem = function(element) {
-      switch (element.className) {
-          case 'album-song-button':
-          case 'ion-play':
-          case 'ion-pause':
-              return findParentByClassName(element, 'song-item-number');
-          case 'album-view-song-item':
-              return element.querySelector('.song-item-number');
-          case 'song-item-title':
-          case 'song-item-duration':
-              return findParentByClassName(element, 'album-view-song-item').querySelector('.song-item-number');
-          case 'song-item-number':
-              return element;
-          default:
-              return;
-      }
+    return findParentByClassName(element, 'album-view-song-item').querySelector('.song-item-number');
   };
 
   var clickHandler = function(targetElement) {
@@ -171,7 +160,6 @@ window.onload = function() {
   songListContainer.addEventListener('mouseover', function(event) {
     if(event.target.parentElement.className === 'album-view-song-item') {
       //replace the son-item-number with playButtonTemplate
-      event.target.parentElement.querySelector('.song-item-number').innerHTML = playButtonTemplate;
             var songItem = getSongItem(event.target);
 
             if (songItem.getAttribute('data-song-number') !== currentlyPlayingSong) {
